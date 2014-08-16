@@ -182,9 +182,11 @@ public class FullscreenActivity extends Activity {
 		            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
 		            String filePath = cursor.getString(columnIndex);
 		            cursor.close();
-		            Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath);
-		          ImageView iv =(ImageView) findViewById(R.id.imageView1);
-		          iv.setImageBitmap(yourSelectedImage);
+		            
+		            Intent intent = new Intent(FullscreenActivity.this,HandlePicActivity.class);
+		            intent.putExtra("path", filePath);
+		            startActivity(intent);
+		            
 		        }
 		    }
 			
