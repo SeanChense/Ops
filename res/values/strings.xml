@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ops</string>
+    <string name="dummy_button">选择图片</string>
+    <string name="dummy_content">Ops</string>
+  
+
+</resources>
