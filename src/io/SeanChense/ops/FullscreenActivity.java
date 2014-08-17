@@ -5,9 +5,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,9 +13,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -131,8 +127,19 @@ public class FullscreenActivity extends Activity {
 		// Upon interacting with UI controls, delay any scheduled hide()
 		// operations to prevent the jarring behavior of controls going away
 		// while interacting with the UI.
-		findViewById(R.id.dummy_button).setOnTouchListener(
-				mDelayHideTouchListener);
+		findViewById(R.id.dummy_button).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				delayedHide(AUTO_HIDE_DELAY_MILLIS);
+				Intent mIntent = new Intent();
+				mIntent.setType("image/*");
+				mIntent.setAction(Intent.ACTION_GET_CONTENT);
+				startActivityForResult(Intent.createChooser(mIntent, "选择一张图片"), SELECT_PICTURE);
+				
+				
+			}
+		});
 	}
 
 	@Override
@@ -154,11 +161,6 @@ public class FullscreenActivity extends Activity {
 		@Override
 		public boolean onTouch(View view, MotionEvent motionEvent) {
 			if (AUTO_HIDE) {
-				delayedHide(AUTO_HIDE_DELAY_MILLIS);
-				Intent mIntent = new Intent();
-				mIntent.setType("image/*");
-				mIntent.setAction(Intent.ACTION_GET_CONTENT);
-				startActivityForResult(Intent.createChooser(mIntent, "选择一张图片"), SELECT_PICTURE);
 				
 			}
 			return false;

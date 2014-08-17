@@ -45,8 +45,13 @@ public class HandlePicActivity extends Activity {
 			     boolean fromUser) { 
 			    // TODO Auto-generated method stub 
 			    Log.i(Tag, Today+"seek bar"+""+progress);
-			    bm = ih.blurRenderScript(HandlePicActivity.this, blurTemplate, (float)seekBar.getProgress());
-				iv.setImageBitmap(bm);
+			    if(progress != 0){
+			    	bm = ih.blurRenderScript(HandlePicActivity.this, blurTemplate, (float)seekBar.getProgress());
+				    iv.setImageBitmap(bm);
+			    }else{
+			    	iv.setImageBitmap(blurTemplate);
+			    }
+			    
 			   } 
 
 			   @Override 
