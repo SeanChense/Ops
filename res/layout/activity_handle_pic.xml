@@ -42,4 +42,14 @@
         android:layout_alignParentBottom="true"
         android:max="25" />
 
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="171dp"
+        android:visibility="invisible" />
+
 </RelativeLayout>

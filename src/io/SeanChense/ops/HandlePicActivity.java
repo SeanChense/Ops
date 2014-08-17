@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -33,6 +35,7 @@ public class HandlePicActivity extends Activity {
 		ImageButton btn_save = (ImageButton)findViewById(R.id.btn_save);
 		final ImageView         iv = (ImageView)findViewById(R.id.image);
 		SeekBar seekBar = (SeekBar)findViewById(R.id.seekbar); 
+		final ProgressBar pb =(ProgressBar)findViewById(R.id.progress);
 		String path = getPath();
 	    final ImageHelper ih = new ImageHelper();
 		final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -70,10 +73,14 @@ public class HandlePicActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+			pb.setVisibility(View.VISIBLE);//VISIBLE = View.VISIBLE;
+			
 			Boolean flag = ih.savePic(bm);
 			 Log.i(Tag, Today+"btn clicked");
+			 pb.setVisibility(View.GONE);
 			if(flag)
 				Toast.makeText(HandlePicActivity.this, "保存成功", 1000).show();
+			
 			else
 				Toast.makeText(HandlePicActivity.this, "保存失败", 1000).show();
 				
@@ -84,12 +91,17 @@ public class HandlePicActivity extends Activity {
 		
 		
 		
+		
+		
+		
+		
 	}
 	public String getPath(){
 		Intent intent = getIntent();
 		String path = (String) intent.getCharSequenceExtra("path");
 		return path;
 	}
+	
 
 	
 }

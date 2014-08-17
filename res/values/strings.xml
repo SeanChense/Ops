@@ -3,7 +3,7 @@
 
     <string name="app_name">Ops</string>
     <string name="dummy_button">选择图片</string>
-    <string name="dummy_content">Ops</string>
+    <string name="dummy_content">OpsBlur</string>
     <string name="title_activity_handle_pic">HandlePicActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
