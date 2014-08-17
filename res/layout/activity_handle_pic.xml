@@ -32,4 +32,13 @@
 
     </RelativeLayout>
 
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/handleImageMarginX"
+        android:layout_marginRight="@dimen/handleImageMarginX"
+        android:layout_marginBottom="13dp"
+        android:layout_alignParentBottom="true" />
+
 </RelativeLayout>

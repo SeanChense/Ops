@@ -1,5 +1,6 @@
 package io.SeanChense.ops;
 
+import io.SeanChense.ops.imageUtils.ImageHelper;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,14 +11,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 
 public class HandlePicActivity extends Activity {
 	private final static String Tag = "HandlePicActivity";
 	private final static String Today = "I am here with you";
 
+	@SuppressWarnings("static-access")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,6 +30,26 @@ public class HandlePicActivity extends Activity {
                                        WindowManager.LayoutParams. FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_handle_pic);
 		ImageButton btn_save = (ImageButton)findViewById(R.id.btn_save);
+		SeekBar seekBar = (SeekBar)findViewById(R.id.seekbar); 
+		seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){ 
+
+			   @Override 
+			   public void onProgressChanged(SeekBar seekBar, int progress, 
+			     boolean fromUser) { 
+			    // TODO Auto-generated method stub 
+			    Log.i(Tag, Today+"seek bar"+""+progress);
+			   } 
+
+			   @Override 
+			   public void onStartTrackingTouch(SeekBar seekBar) { 
+			    // TODO Auto-generated method stub 
+			   } 
+
+			   @Override 
+			   public void onStopTrackingTouch(SeekBar seekBar) { 
+			    // TODO Auto-generated method stub 
+			   } 
+			       }); 
 		btn_save.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -42,6 +64,9 @@ public class HandlePicActivity extends Activity {
 		String path = getPath();
 		Bitmap yourSelectedImage = BitmapFactory.decodeFile(path);
 		((ImageView)findViewById(R.id.image)).setImageBitmap(yourSelectedImage);
+		ImageHelper ih = new ImageHelper();
+		Bitmap bm = ih.getRoundedCornerBitmap(yourSelectedImage, 10);
+		
 		
 	}
 	public String getPath(){
