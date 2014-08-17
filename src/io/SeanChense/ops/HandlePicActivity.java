@@ -14,11 +14,12 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 public class HandlePicActivity extends Activity {
 	private final static String Tag = "HandlePicActivity";
 	private final static String Today = "I am here with you";
-
+	private Bitmap bm;
 	@SuppressWarnings("static-access")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,9 @@ public class HandlePicActivity extends Activity {
 		options.inSampleSize = 8;
 		final Bitmap blurTemplate = BitmapFactory.decodeFile(path, options);
 		iv.setImageBitmap(blurTemplate);
+		
 		seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){ 
-				Bitmap bm;
+				
 			   @Override 
 			   public void onProgressChanged(SeekBar seekBar, int progress, 
 			     boolean fromUser) { 
@@ -68,8 +70,12 @@ public class HandlePicActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				//Store the picture
-				Log.i(Tag, Today+" :btn_Save clicked");
+			Boolean flag = ih.savePic(bm);
+			 Log.i(Tag, Today+"btn clicked");
+			if(flag)
+				Toast.makeText(HandlePicActivity.this, "保存成功", 1000).show();
+			else
+				Toast.makeText(HandlePicActivity.this, "保存失败", 1000).show();
 				
 			}
 			
