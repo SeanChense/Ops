@@ -33,7 +33,7 @@ public class HandlePicActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				//Store the picture
-				Log.i(Tag, Today+"btn_Save clicked");
+				Log.i(Tag, Today+" :btn_Save clicked");
 				
 			}
 			
@@ -50,4 +50,5 @@ public class HandlePicActivity extends Activity {
 		return path;
 	}
 
+	
 }
