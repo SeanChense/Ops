@@ -30,14 +30,23 @@ public class HandlePicActivity extends Activity {
                                        WindowManager.LayoutParams. FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_handle_pic);
 		ImageButton btn_save = (ImageButton)findViewById(R.id.btn_save);
+		final ImageView         iv = (ImageView)findViewById(R.id.image);
 		SeekBar seekBar = (SeekBar)findViewById(R.id.seekbar); 
+		String path = getPath();
+	    final ImageHelper ih = new ImageHelper();
+		final BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inSampleSize = 8;
+		final Bitmap blurTemplate = BitmapFactory.decodeFile(path, options);
+		iv.setImageBitmap(blurTemplate);
 		seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){ 
-
+				Bitmap bm;
 			   @Override 
 			   public void onProgressChanged(SeekBar seekBar, int progress, 
 			     boolean fromUser) { 
 			    // TODO Auto-generated method stub 
 			    Log.i(Tag, Today+"seek bar"+""+progress);
+			    bm = ih.blurRenderScript(HandlePicActivity.this, blurTemplate, (float)seekBar.getProgress());
+				iv.setImageBitmap(bm);
 			   } 
 
 			   @Override 
@@ -61,11 +70,7 @@ public class HandlePicActivity extends Activity {
 			
 			
 		});
-		String path = getPath();
-		Bitmap yourSelectedImage = BitmapFactory.decodeFile(path);
-		((ImageView)findViewById(R.id.image)).setImageBitmap(yourSelectedImage);
-		ImageHelper ih = new ImageHelper();
-		Bitmap bm = ih.getRoundedCornerBitmap(yourSelectedImage, 10);
+		
 		
 		
 	}

@@ -39,6 +39,7 @@
         android:layout_marginLeft="@dimen/handleImageMarginX"
         android:layout_marginRight="@dimen/handleImageMarginX"
         android:layout_marginBottom="13dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:max="25" />
 
 </RelativeLayout>
